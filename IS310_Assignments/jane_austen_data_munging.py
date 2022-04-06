@@ -1,8 +1,15 @@
-# Step 1:
-jane = "The Project Gutenberg EBook of Pride and Prejudice, by Jane Austen This eBook is for the use of anyone anywhere at no cost and with almost no restrictions whatsoever.  You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org Title: Pride and Prejudice Author: Jane Austen Posting Date: August 26, 2008 Release Date: June, 1998 Last Updated: March 10, 2018 Language: English Character set encoding: UTF-8 ***START OF THIS PROJECT GUTENBERG EBOOK PRIDE AND PREJUDICE*** Produced by Anonymous Volunteers PRIDE AND PREJUDICE By Jane Austen Chapter 1 It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife."
 
+# Step 1:
+input_file = open("PrideandPrejudice.txt","r")
+jane = input_file.read()
+input_file.close()
+  
 # Step 2:
-jane_cleaned = jane.split("The Project Gutenberg EBook of Pride and Prejudice, by Jane Austen This eBook is for the use of anyone anywhere at no cost and with almost no restrictions whatsoever.  You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org Title: Pride and Prejudice Author: Jane Austen Posting Date: August 26, 2008 Release Date: June, 1998 Last Updated: March 10, 2018 Language: English Character set encoding: UTF-8 ***START OF THIS PROJECT GUTENBERG EBOOK PRIDE AND PREJUDICE***")
+jane_cleaned = jane.split('\ufeffThe Project Gutenberg eBook of Pride and Prejudice, by Jane Austen\n\nThis eBook is for the use of anyone anywhere in the \
+United States and\nmost other parts of the world at no cost and with almost no restrictions\nwhatsoever. You may copy it, give it away or re-use it under the \
+terms\nof the Project Gutenberg License included with this eBook or online at\nwww.gutenberg.org. If you are not located in the United States, you\nwill have to \
+check the laws of the country where you are located before\nusing this eBook.\n\nTitle: Pride and Prejudice\n\nAuthor: Jane Austen\n\nRelease Date: June, 1998 \
+[eBook #1342]\n[Most recently updated: August 23, 2021]\n\nLanguage: English\n\nCharacter set encoding: UTF-8\n\n')
 jane_cleaned = ''.join(jane_cleaned[1])
 
 # Step 3:
@@ -15,4 +22,7 @@ word_r = input()
 print('Enter a new word to replace with:')
 word_n = input()
 jane_cleaned = jane_cleaned.replace(word_r, word_n)
-print(jane_cleaned)
+print('Text file has been altered. Check directory for altered file.')
+
+with open("PrideandPrejudice_Alt.txt", "w") as output_file:
+   output_file.write(jane_cleaned)
